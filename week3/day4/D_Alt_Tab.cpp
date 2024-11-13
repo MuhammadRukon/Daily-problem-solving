@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+bool cmp(pair<string, int> a, pair<string, int> b)
+{
+    return a.second > b.second;
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -8,21 +11,23 @@ int main()
 
     int n;
     cin >> n;
-    list<string> ls;
-
+    map<string, int> m;
     for (int i = 0; i < n; i++)
     {
         string s;
         cin >> s;
-        ls.remove(s);
-        ls.push_front(s);
+        m[s] = i + 1;
     }
-
-    for (auto it : ls)
+    vector<pair<string, int>> v;
+    for (auto it : m)
     {
-        cout << it.substr(it.size() - 2);
+        v.push_back({it.first, it.second});
     }
-    cout << endl;
 
+    sort(v.begin(), v.end(), cmp);
+    for (auto it : v)
+    {
+        cout << it.first.substr(it.first.size() - 2);
+    }
     return 0;
 }
