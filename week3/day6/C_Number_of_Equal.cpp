@@ -18,18 +18,26 @@ int main()
         cin >> v2[i];
     }
     int i = 0, j = 0;
-    int count = 0;
-    while (j <= m)
+    long long count = 0;
+    while (i < n && j < m)
     {
-        if (i < n && v1[i] == v2[j])
+        int curr = v1[i], cnt1 = 0, cnt2 = 0;
+        while (i < n && v1[i] == curr)
         {
-            count++;
+            cnt1++;
             i++;
         }
-        else
+        while (j < m && v2[j] < curr)
         {
+
             j++;
         }
+        while (j < m && v2[j] == curr)
+        {
+            cnt2++;
+            j++;
+        }
+        count += (1ll * cnt1 * cnt2);
     }
     cout << count << endl;
     return 0;
